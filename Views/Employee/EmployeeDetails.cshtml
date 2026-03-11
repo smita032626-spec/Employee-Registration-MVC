@@ -1,0 +1,55 @@
+﻿@model EmployeeManagementCRUD.Models.EmployeeProperties
+
+<h2>Employee Details</h2>
+
+<div>
+    <b>Name:</b> @Model.Name
+</div>
+
+<div>
+    <b>Email:</b> @Model.Email
+</div>
+
+<div>
+    <b>Phone:</b> @Model.PhoneNumber
+</div>
+
+<div>
+    <b>DOB:</b> @Model.DOB
+</div>
+
+<div>
+    <b>Address:</b> @Model.Address
+</div>
+
+<div>
+    <b>City:</b> @Model.CityName
+</div>
+
+<div>
+    <b>District:</b> @Model.DistrictName
+</div>
+
+<div>
+    <b>Taluka:</b> @Model.TalukaName
+</div>
+
+<div>
+    <b>Department:</b> @Model.DepartmentName
+</div>
+
+<div>
+    <b>Designation:</b> @Model.DesignationName
+</div>
+
+<div>
+    <b>Pincode:</b> @Model.Pincode
+</div>
+
+<div>
+    <b>Status:</b> @(Model.IsActive ? "Active" : "Inactive")
+</div>
+
+<br />
+
+@Html.ActionLink("Back to List", "EmployeeList")

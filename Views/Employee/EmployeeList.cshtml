@@ -1,0 +1,67 @@
+﻿@model List<EmployeeManagementCRUD.Models.EmployeeProperties>
+
+@{
+    ViewBag.Title = "Employee List";
+}
+
+<h2>Employee List</h2>
+
+<p>
+    @Html.ActionLink("Create New Employee", "CreateEmployee", "Employee")
+</p>
+
+<table border="1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>DOB</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>District</th>
+            <th>Pincode</th>
+            <th>File</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.DOB</td>
+                <td>@item.DepartmentName</td>
+                <td>@item.DesignationName</td>
+                <td>@item.DistrictName</td>
+                <td>@item.Pincode</td>
+
+                <td>
+                    <a href="@item.FilePath" target="_blank">View File</a>
+                </td>
+
+                <td>
+                    @(item.IsActive ? "Active" : "Inactive")
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "EditEmployee", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" }) 
+                    <!-- Delete button with JS confirm -->
+                    @using (Html.BeginForm("DeleteEmployee", "Employee", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this employee?');", style = "display:inline" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("id", item.Id)
+                        <input type="submit" value="Delete" class="btn btn-danger btn-sm" />
+                    }
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+
+</table>
+

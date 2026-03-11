@@ -1,0 +1,83 @@
+﻿@model EmployeeManagementCRUD.Models.EmployeeProperties
+
+<h2>Edit Employee</h2>
+
+@using (Html.BeginForm("EditEmployee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <div>
+        <label>Name</label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>Phone</label>
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>DOB</label>
+        @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+    </div>
+
+    <div>
+        <label>Address</label>
+        @Html.TextAreaFor(m => m.Address, new { @class = "form-control", rows = "3" })
+    </div>
+
+    <div>
+        <label>City</label>
+        @Html.DropDownListFor(m => m.CityId, ViewBag.CityList as SelectList, "Select City", new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>District</label>
+        @Html.DropDownListFor(m => m.DistrictId, ViewBag.DistrictList as SelectList, "Select District", new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>Taluka</label>
+        @Html.DropDownListFor(m => m.TalukaId, ViewBag.TalukaList as SelectList, "Select Taluka", new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>Department</label>
+        @Html.DropDownListFor(m => m.DepartmentId, ViewBag.DepartmentList as SelectList, "Select Department", new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>Designation</label>
+        @Html.DropDownListFor(m => m.DesignationId, ViewBag.DesignationList as SelectList, "Select Designation", new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>Pincode</label>
+        @Html.TextBoxFor(m => m.Pincode, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label>Upload File</label>
+        <!-- Show existing file if available -->
+        @if (!string.IsNullOrEmpty(Model.FilePath))
+        {
+            <p>Current File: <a href="@Url.Content(Model.FilePath)" target="_blank">View File</a></p>
+        }
+
+        <!-- Input to upload new file -->
+        <input type="file" name="UploadFile" class="form-control" />
+    </div>
+
+    <div>
+        <label>Is Active</label>
+        @Html.CheckBoxFor(m => m.IsActive)
+    </div>
+
+    <br />
+    <input type="submit" value="Update Employee" class="btn btn-primary" />
+}
